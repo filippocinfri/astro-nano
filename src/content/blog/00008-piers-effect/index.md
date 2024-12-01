@@ -1,6 +1,6 @@
 ---
 title: "Pier's Effect"
-description: "I sat at the end of the pier, soaking the stars."
+description: "I wanted to sit at the end of the pier."
 date: "10/20/2024"
 ---
 
