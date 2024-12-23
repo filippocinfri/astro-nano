@@ -1,5 +1,5 @@
 ---
-title: "Happiness and granted things"
+title: "Happiness and Granted Things"
 description: "The joy of a grandmother hits differently."
 date: "12/31/2023"
 ---
