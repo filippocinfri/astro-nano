@@ -6,9 +6,9 @@ date: "12/23/2024"
 
 I hand over my phone.
 
-_Click click_.
-She starts reading.
-She seems interested.
+_Click click_.<br>
+She starts reading.<br>
+She seems interested.<br>
 "I will continue later."
 
 Suddenly, I'm perplexed. R was caught up reading my post. Why did she stop abruptly? I was assuming the worst-case scenario. I may have written something perceived as either toxic or dull, and she was providing an excuse to stop.
