@@ -17,7 +17,8 @@ Maybe it could have been the situation. There were other people; she might have 
 
 She answered, "I'm going to make myself a sobbing mess." It was a genuinely felt reply. I had no way of doubting that it was the truth. It blew me away. I was speechless. Strong emotions were building up while she was reading [Happiness and Granted Things](/blog/00007-happiness-granted-things/).
 
-Human
+### Human
+
 She quit reading before the growing knot in her stomach could embarrass her. She was honest with her feelings. It's hard to be honest with your feelings in front of others. It may feel vulnerable. Some boldness on her side.
 
 Later, she revealed why the stomach knot. She confessed to me she had experiences similar to mine. The post brought up memories.
