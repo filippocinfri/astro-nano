@@ -6,7 +6,7 @@ date: "12/20/2024"
 
 Time's in a hurry.
 
-Don’t blink. <br>
+Don’t blink.
 You'll miss the story.
 
 ## 6
@@ -23,7 +23,7 @@ But the sacred tradition imposes exchanging presents.
 
 Tic.
 
-Indecisiveness. Nobody wants to break the plan. It's peak hour. Arriving late means risking not eating.
+Indecisiveness puts everything at risk. It's peak hour. Arriving late means almost certainly not eating.
 
 Tic.
 
@@ -41,11 +41,11 @@ Five presents left. Another MAGA hat. You blinked. You missed the first.
 
 Tic.
 
-Both laugh. The scene is funny. The card was the protagonist.
+Both laugh. The scene is funny. The greeting card was the actual protagonist.
 
 Tic.
 
-The card is curated. Care is perceived. Delivering Details requires time. Perceiving is quicker than explaining. Skip.
+The card is curated. Details reveal care. Delivering every detail requires time. Perceiving is quicker than explaining. Skip.
 
 Tic.
 
@@ -115,4 +115,4 @@ In peace. Finally.
 
 <br><br><br><br><br>
 
-It takes time to enjoy a dinner together. That was the intent.
+I've enjoyed the dinner. That was the intent.
