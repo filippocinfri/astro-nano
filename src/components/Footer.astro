@@ -2,6 +2,8 @@
 import Container from "@components/Container.astro";
 import { SITE } from "@consts";
 import BackToTop from "@components/BackToTop.astro";
+
+const currentYear = new Date().getFullYear();
 ---
 
 <footer class="animate">
@@ -13,7 +15,8 @@ import BackToTop from "@components/BackToTop.astro";
     </div>
     <div class="flex justify-between items-center">
       <div>
-        &copy; 2024 {`|`}
+        &copy; {currentYear}
+        {`|`}
         {SITE.NAME}
       </div>
       <div class="flex flex-wrap gap-1 items-center">
@@ -80,7 +83,8 @@ import BackToTop from "@components/BackToTop.astro";
             stroke-width="1.5"
             stroke-linecap="round"
             stroke-linejoin="round"
-            class="group-hover:stroke-black group-hover:dark:stroke-white transition-colors duration-300 ease-in-out">
+            class="group-hover:stroke-black group-hover:dark:stroke-white transition-colors duration-300 ease-in-out"
+          >
             <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
             <line x1="8" y1="21" x2="16" y2="21"></line>
             <line x1="12" y1="17" x2="12" y2="21"></line>
