@@ -1,6 +1,6 @@
 ---
 title: "The frame"
-description: "brilliant innovation"
+description: "Brilliant innovation"
 date: "07/14/2025"
 ---
 

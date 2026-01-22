@@ -1,6 +1,6 @@
 ---
 title: "To Whom?"
-description: "love, death, and sanctity"
+description: "Love, death, and sanctity"
 date: "10/23/2025"
 ---
 
