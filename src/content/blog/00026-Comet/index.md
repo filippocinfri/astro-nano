@@ -23,3 +23,5 @@ There is a third time meeting them. It was a very special occasion, like a comet
 And eventually, one last time, like a dying comet, I met this couple in love. You will enjoy the show the comet is putting on for you, knowing it's going to be the last. The comet is consumed, and there won't be another amazing show because your sight depleted the comet. That's not how the physics of comets work, but it's how it feels, it's how people feel about it.
 
 The last time I saw them was at their wedding celebration. They were in love more than ever, and I felt like they were ready to live as husband and wife. It was the last time I saw them. The comet didn't really die; it just started orbiting another planet, showing an even more shining tail made of simple but eternal love.
+
+![Black Swans](/images/posts/Comet-black_swans2.jpg)
