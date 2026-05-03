@@ -1,6 +1,6 @@
 ---
 title: "Comet"
-description: "with a bright tail"
+description: "with a bright tail."
 date: "04/25/2026"
 ---
 
