@@ -6,6 +6,6 @@ import tailwind from "@astrojs/tailwind";
 import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
-  site: "http://blackswanpetter.com/",
+  site: "http://www.blackswanpetter.com",
   integrations: [mdx(), sitemap(), tailwind()],
 });
