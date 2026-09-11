@@ -1,27 +1,13 @@
 ---
-title: "Comet"
-description: "with a bright tail."
-date: "04/25/2026"
+title: "Workplaces"
+description: "A quantitative investigation of the association between workplace architectural fenestration, perceived visual horizon, and the temporal and spatial dimensionality of dream phenomenology."
+date: "09/11/2026"
 ---
 
-There is something unique, it feels almost like magic, in letting readers see what you saw through words. It's almost like they can capture something from your life without having really lived it. And I wish the readers would.
+Some workplaces have big windows to bring in plenty of natural light and add beauty.
 
-This is the story of a beautiful young couple whom I met through a friend. They didn't even finish their studies when I met them. They have a very loving relationship, and they are very patient with each other.
+Some buildings have big windows because the people inside want to be seen.
 
-That's the first time the comet passed by. You can see this beautiful love. Like a comet putting up the nicest show for you to see, their love was true and sparking bright. I wish I could touch what was left behind by this deep emotion, like I wish I had touched the tail left behind by a comet. I desired to be in love.
+Some workplaces don't have windows. If you are not working as a surgeon, the workplace might be preventing you from looking far.
 
-But no comet sits still, and like a comet crosses the sky without turning back, they moved away from my life.
-
-Some comets, however, orbit around and appear again. The sky will be painted by their beautiful tail again. In the same way, some comets show their majesty more than once; this couple showed me again how beautiful being one can be.
-
-They came back into my life. I was able to talk to them about love. But you must be two to be a couple. So talking about love is unavoidably talking about someone else who wasn't still there. They tried to push me toward a direction that, I can now say, was not good for me on this last subject. But they were in good faith and genuinely trying to be helpful.
-
-The comet disappears again because its time is over. Likewise, the lovebirds' time in my life was over for the moment.
-
-There is a third time meeting them. It was a very special occasion, like a comet on your birthday night or a comet at Christmas. I met the couple at the jubilee. They suggested that I pray with a very precise intent. I felt spoken to by God. The jubilee is big and lasts a long time. Still, it doesn't last forever, exactly like Christmas night will eventually become a day, and you won't be able to see any comets in the sky.
-
-And eventually, one last time, like a dying comet, I met this couple in love. You will enjoy the show the comet is putting on for you, knowing it's going to be the last. The comet is consumed, and there won't be another amazing show because your sight depleted the comet. That's not how the physics of comets work, but it's how it feels, it's how people feel about it.
-
-The last time I saw them was at their wedding celebration. They were in love more than ever, and I felt like they were ready to live as husband and wife. It was the last time I saw them. The comet didn't really die; it just started orbiting another planet, showing an even more shining tail made of simple but eternal love.
-
-![Black Swans](/images/posts/Comet-black_swans2.jpg)
+I am the luckiest in the world; I got to work in a place with big windows. Windows to look far. Looking far also means dreaming far. When you can dream into the future, you can dream bigger. Bigger dreams might produce bolder actions. And bolder actions are what we need at this time in history.
