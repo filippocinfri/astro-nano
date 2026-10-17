@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: http://www.blackswanpetter.com/sitemap-index.xml

@@ -1,0 +1,133 @@
+<!DOCTYPE html><html lang="en"> <head><!-- Global Metadata --><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" type="image/svg+xml" href="/favicon-dark.svg" media="(prefers-color-scheme: dark)"><link rel="icon" type="image/svg+xml" href="/favicon-light.svg" media="(prefers-color-scheme: light)"><link rel="icon" type="image/x-icon" href="/favicon-light.svg"><meta name="generator" content="Astro v5.7.14"><!-- Font preloads --><link rel="preload" href="/_astro/inter-latin-400-normal.BOOGhInR.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/_astro/inter-latin-600-normal.D273HNI0.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/_astro/lora-latin-400-normal.CvHVDnm4.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/_astro/lora-latin-600-normal.DUWh3m6k.woff2" as="font" type="font/woff2" crossorigin><!-- Canonical URL --><link rel="canonical" href="http://www.blackswanpetter.com/blog/00029-papers-post-1/"><!-- Primary Meta Tags --><title>Research output across euro area NCBs | Black Swan Petter</title><meta name="title" content="Research output across euro area NCBs | Black Swan Petter"><meta name="description" content="A comparison of central-bank research publications volume."><!-- Open Graph / Facebook --><meta property="og:type" content="website"><meta property="og:url" content="http://www.blackswanpetter.com/blog/00029-papers-post-1/"><meta property="og:title" content="Research output across euro area NCBs | Black Swan Petter"><meta property="og:description" content="A comparison of central-bank research publications volume."><meta property="og:image" content="http://www.blackswanpetter.com/nano.png"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="http://www.blackswanpetter.com/blog/00029-papers-post-1/"><meta property="twitter:title" content="Research output across euro area NCBs | Black Swan Petter"><meta property="twitter:description" content="A comparison of central-bank research publications volume."><meta property="twitter:image" content="http://www.blackswanpetter.com/nano.png"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.CtSceO8m.js"></script><script type="module">document.addEventListener("astro:before-swap",e=>[...e.newDocument.head.querySelectorAll('link[as="font"]')].forEach(o=>o.remove()));</script><script>
+  function init() {
+    preloadTheme();
+    onScroll();
+    animate();
+
+    const backToTop = document.getElementById("back-to-top");
+    backToTop?.addEventListener("click", (event) => scrollToTop(event));
+
+    const backToPrev = document.getElementById("back-to-prev");
+    backToPrev?.addEventListener("click", () => window.history.back());
+
+    const lightThemeButton = document.getElementById("light-theme-button");
+    lightThemeButton?.addEventListener("click", () => {
+      localStorage.setItem("theme", "light");
+      toggleTheme(false);
+    });
+
+    const darkThemeButton = document.getElementById("dark-theme-button");
+    darkThemeButton?.addEventListener("click", () => {
+      localStorage.setItem("theme", "dark");
+      toggleTheme(true);
+    });
+
+    const systemThemeButton = document.getElementById("system-theme-button");
+    systemThemeButton?.addEventListener("click", () => {
+      localStorage.setItem("theme", "system");
+      toggleTheme(window.matchMedia("(prefers-color-scheme: dark)").matches);
+    });
+
+    window.matchMedia("(prefers-color-scheme: dark)")
+      .addEventListener("change", event => {
+        if (localStorage.theme === "system") {
+          toggleTheme(event.matches);
+        }
+      }
+    );
+
+    document.addEventListener("scroll", onScroll);
+  }
+
+  function animate() {
+    const animateElements = document.querySelectorAll(".animate");
+
+    animateElements.forEach((element, index) => {
+      setTimeout(() => {
+        element.classList.add("show");
+      }, index * 150);
+    });
+  }
+
+  function onScroll() {
+    if (window.scrollY > 0) {
+      document.documentElement.classList.add("scrolled");
+    } else {
+      document.documentElement.classList.remove("scrolled");
+    }
+  }
+
+  function scrollToTop(event) {
+    event.preventDefault();
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  }
+
+function toggleTheme(dark) {
+    const css = document.createElement("style");
+
+    css.appendChild(
+      document.createTextNode(
+        `* {
+             -webkit-transition: none !important;
+             -moz-transition: none !important;
+             -o-transition: none !important;
+             -ms-transition: none !important;
+             transition: none !important;
+          }
+        `,
+      )
+    );
+
+    document.head.appendChild(css);
+
+    if (dark) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+
+  window.getComputedStyle(css).opacity;
+    document.head.removeChild(css);
+  }
+
+  function preloadTheme() {
+    const userTheme = localStorage.theme;
+
+    if (userTheme === "light" || userTheme === "dark") {
+      toggleTheme(userTheme === "dark");
+    } else {
+      toggleTheme(window.matchMedia("(prefers-color-scheme: dark)").matches);
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", () => init());
+  document.addEventListener("astro:after-swap", () => init());
+  preloadTheme();
+</script><link rel="stylesheet" href="/_astro/_slug_.ClOTN39Y.css"></head> <body> <header> <div class="mx-auto max-w-screen-sm px-5">  <div class="flex flex-wrap gap-y-2 justify-between"> <a href="/" target="_self" class="inline-block decoration-black/15 dark:decoration-white/30 hover:decoration-black/25 hover:dark:decoration-white/50 text-current hover:text-black hover:dark:text-white transition-colors duration-300 ease-in-out">  <div class="font-semibold"> Black Swan Petter </div>  </a> <nav class="flex gap-1"> <a href="/blog" target="_self" class="inline-block decoration-black/15 dark:decoration-white/30 hover:decoration-black/25 hover:dark:decoration-white/50 text-current hover:text-black hover:dark:text-white transition-colors duration-300 ease-in-out underline underline-offset-2"> 
+blog
+ </a> <span> / </span> <a href="/work" target="_self" class="inline-block decoration-black/15 dark:decoration-white/30 hover:decoration-black/25 hover:dark:decoration-white/50 text-current hover:text-black hover:dark:text-white transition-colors duration-300 ease-in-out underline underline-offset-2"> 
+work
+ </a> <span> / </span> <a href="/projects" target="_self" class="inline-block decoration-black/15 dark:decoration-white/30 hover:decoration-black/25 hover:dark:decoration-white/50 text-current hover:text-black hover:dark:text-white transition-colors duration-300 ease-in-out underline underline-offset-2"> 
+projects
+ </a> </nav> </div>  </div> </header> <main>  <div class="mx-auto max-w-screen-sm px-5">  <div class="animate"> <a href="/blog" class="relative group w-fit flex pl-7 pr-3 py-1.5 flex-nowrap rounded border border-black/15 dark:border-white/20 hover:bg-black/5 dark:hover:bg-white/5 hover:text-black dark:hover:text-white transition-colors duration-300 ease-in-out"> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="absolute top-1/2 left-2 -translate-y-1/2 size-4 stroke-2 fill-none stroke-current"> <line x1="5" y1="12" x2="19" y2="12" class="translate-x-2 group-hover:translate-x-0 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out"></line> <polyline points="12 5 5 12 12 19" class="translate-x-1 group-hover:translate-x-0 transition-transform duration-300 ease-in-out"></polyline> </svg> <div class="text-sm"> 
+Back to blog
+ </div> </a> </div> <div class="space-y-1 my-10"> <div class="animate flex items-center gap-1.5"> <div class="font-base text-sm"> <time datetime="2026-10-16T22:00:00.000Z"> Oct 17, 2026 </time> </div>
+&bull;
+<div class="font-base text-sm"> 1 min read </div> </div> <div class="animate text-2xl font-semibold text-black dark:text-white"> Research output across euro area NCBs </div> </div> <article class="animate"> <h1 id="research-output-across-euro-area-ncbs">Research output across euro area NCBs</h1>
+<p>Number of research publications to examine the research activity of national central banks.</p>
+<figure class="my-8 w-full"> <figcaption class="mb-4 flex flex-wrap items-start justify-between gap-3"> <div class="min-w-0"> <h2 class="!mb-1 !mt-0 !font-sans !text-xl !font-semibold !leading-snug"> Research papers published by euro area NCBs </h2> <p class="!my-1 text-sm opacity-70">Publications indexed in the BIS Central Bank Research Hub</p> </div> <span class="shrink-0 rounded border border-black/10 px-2 py-1 text-xs dark:border-white/15"> All years indexed in the hub (no date filter) </span> </figcaption> <div class="ncb-bar-chart w-full" style="height: 634px" data-chart="{&#34;items&#34;:[{&#34;name&#34;:&#34;Deutsche Bundesbank&#34;,&#34;code&#34;:&#34;DE&#34;,&#34;value&#34;:1001},{&#34;name&#34;:&#34;Banco de España&#34;,&#34;code&#34;:&#34;ES&#34;,&#34;value&#34;:908},{&#34;name&#34;:&#34;De Nederlandsche Bank&#34;,&#34;code&#34;:&#34;NL&#34;,&#34;value&#34;:705},{&#34;name&#34;:&#34;Banca d'Italia&#34;,&#34;code&#34;:&#34;IT&#34;,&#34;value&#34;:547},{&#34;name&#34;:&#34;Banque de France&#34;,&#34;code&#34;:&#34;FR&#34;,&#34;value&#34;:478},{&#34;name&#34;:&#34;Banco de Portugal&#34;,&#34;code&#34;:&#34;PT&#34;,&#34;value&#34;:312},{&#34;name&#34;:&#34;National Bank of Belgium&#34;,&#34;code&#34;:&#34;BE&#34;,&#34;value&#34;:312},{&#34;name&#34;:&#34;Bank of Finland&#34;,&#34;code&#34;:&#34;FI&#34;,&#34;value&#34;:310},{&#34;name&#34;:&#34;Central Bank of Ireland&#34;,&#34;code&#34;:&#34;IE&#34;,&#34;value&#34;:144},{&#34;name&#34;:&#34;Banque centrale du Luxembourg&#34;,&#34;code&#34;:&#34;LU&#34;,&#34;value&#34;:120},{&#34;name&#34;:&#34;Bank of Lithuania&#34;,&#34;code&#34;:&#34;LT&#34;,&#34;value&#34;:98},{&#34;name&#34;:&#34;Oesterreichische Nationalbank&#34;,&#34;code&#34;:&#34;AT&#34;,&#34;value&#34;:72},{&#34;name&#34;:&#34;Bank of Latvia&#34;,&#34;code&#34;:&#34;LV&#34;,&#34;value&#34;:62},{&#34;name&#34;:&#34;Eesti Pank&#34;,&#34;code&#34;:&#34;EE&#34;,&#34;value&#34;:55},{&#34;name&#34;:&#34;Bank of Greece&#34;,&#34;code&#34;:&#34;GR&#34;,&#34;value&#34;:48},{&#34;name&#34;:&#34;Národná banka Slovenska&#34;,&#34;code&#34;:&#34;SK&#34;,&#34;value&#34;:41}],&#34;unit&#34;:&#34;publications&#34;}" role="img" aria-label="Research papers published by euro area NCBs. Horizontal bar chart ranking 16 institutions by number of published papers."></div> <p class="!my-2 font-sans text-xs opacity-60">
+Hover over a bar to inspect its value.
+</p> <p class="!my-2 font-sans text-xs opacity-70"> <strong>Source:</strong> Bank for International Settlements (BIS), Central Bank Research Hub, https://www.bis.org/publications/central-bank?keywords=&amp;start_date=&amp;end_date= (Organisation facet counts; publications are those included in RePEc) </p> <p class="!my-2 font-sans text-xs opacity-60">
+Data last updated: 2026-10-17 </p> <details class="mt-4 text-sm"> <summary class="cursor-pointer font-sans underline underline-offset-4 decoration-black/20 dark:decoration-white/25">
+View underlying data
+</summary> <div class="mt-3 w-full overflow-x-auto"> <table class="w-full border-collapse text-sm"> <thead> <tr> <th scope="col">Rank</th> <th scope="col">Institution</th> <th scope="col">Code</th> <th scope="col">Papers</th> </tr> </thead> <tbody> <tr> <td>1</td> <th scope="row">Deutsche Bundesbank</th> <td>DE</td> <td class="text-right tabular-nums"> 1,001 </td> </tr><tr> <td>2</td> <th scope="row">Banco de España</th> <td>ES</td> <td class="text-right tabular-nums"> 908 </td> </tr><tr> <td>3</td> <th scope="row">De Nederlandsche Bank</th> <td>NL</td> <td class="text-right tabular-nums"> 705 </td> </tr><tr> <td>4</td> <th scope="row">Banca d&#39;Italia</th> <td>IT</td> <td class="text-right tabular-nums"> 547 </td> </tr><tr> <td>5</td> <th scope="row">Banque de France</th> <td>FR</td> <td class="text-right tabular-nums"> 478 </td> </tr><tr> <td>6</td> <th scope="row">Banco de Portugal</th> <td>PT</td> <td class="text-right tabular-nums"> 312 </td> </tr><tr> <td>7</td> <th scope="row">National Bank of Belgium</th> <td>BE</td> <td class="text-right tabular-nums"> 312 </td> </tr><tr> <td>8</td> <th scope="row">Bank of Finland</th> <td>FI</td> <td class="text-right tabular-nums"> 310 </td> </tr><tr> <td>9</td> <th scope="row">Central Bank of Ireland</th> <td>IE</td> <td class="text-right tabular-nums"> 144 </td> </tr><tr> <td>10</td> <th scope="row">Banque centrale du Luxembourg</th> <td>LU</td> <td class="text-right tabular-nums"> 120 </td> </tr><tr> <td>11</td> <th scope="row">Bank of Lithuania</th> <td>LT</td> <td class="text-right tabular-nums"> 98 </td> </tr><tr> <td>12</td> <th scope="row">Oesterreichische Nationalbank</th> <td>AT</td> <td class="text-right tabular-nums"> 72 </td> </tr><tr> <td>13</td> <th scope="row">Bank of Latvia</th> <td>LV</td> <td class="text-right tabular-nums"> 62 </td> </tr><tr> <td>14</td> <th scope="row">Eesti Pank</th> <td>EE</td> <td class="text-right tabular-nums"> 55 </td> </tr><tr> <td>15</td> <th scope="row">Bank of Greece</th> <td>GR</td> <td class="text-right tabular-nums"> 48 </td> </tr><tr> <td>16</td> <th scope="row">Národná banka Slovenska</th> <td>SK</td> <td class="text-right tabular-nums"> 41 </td> </tr> </tbody> </table> </div> </details> </figure> <script type="module" src="/_astro/NcbPapersBarChart.astro_astro_type_script_index_0_lang.DO0r4wo-.js"></script>
+<h2 id="interpretation">Interpretation</h2>
+<p>Discuss the differences between institutions, possible explanations, and the limitations of publication counts as a measure of research output.</p>
+<h2 id="methodology">Methodology</h2>
+<p>Explain the publication categories included, the observation period, and the treatment of co-authored papers.</p> </article>  </div>  </main> <footer class="animate"> <div class="mx-auto max-w-screen-sm px-5">  <div class="relative"> <div class="absolute right-0 -top-20"> <button id="back-to-top" class="relative group w-fit flex pl-8 pr-3 py-1.5 flex-nowrap rounded border border-black/15 dark:border-white/20 hover:bg-black/5 dark:hover:bg-white/5 hover:text-black dark:hover:text-white transition-colors duration-300 ease-in-out"> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="absolute top-1/2 left-2 -translate-y-1/2 size-4 stroke-2 fill-none stroke-current rotate-90"> <line x1="5" y1="12" x2="19" y2="12" class="translate-x-2 group-hover:translate-x-0 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out"></line> <polyline points="12 5 5 12 12 19" class="translate-x-1 group-hover:translate-x-0 transition-transform duration-300 ease-in-out"></polyline> </svg> <div class="text-sm">
+Back to top
+</div> </button> </div> </div> <div class="flex justify-between items-center"> <div>
+&copy; 2026 | Black Swan Petter </div> <div class="flex flex-wrap gap-1 items-center"> <button id="light-theme-button" aria-label="Light theme" class="group size-8 flex items-center justify-center rounded-full"> <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="group-hover:stroke-black group-hover:dark:stroke-white transition-colors duration-300 ease-in-out"> <circle cx="12" cy="12" r="5"></circle> <line x1="12" y1="1" x2="12" y2="3"></line> <line x1="12" y1="21" x2="12" y2="23"></line> <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line> <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line> <line x1="1" y1="12" x2="3" y2="12"></line> <line x1="21" y1="12" x2="23" y2="12"></line> <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line> <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line> </svg> </button> <button id="dark-theme-button" aria-label="Dark theme" class="group size-8 flex items-center justify-center rounded-full"> <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="group-hover:stroke-black group-hover:dark:stroke-white transition-colors duration-300 ease-in-out"> <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path> </svg> </button> <button id="system-theme-button" aria-label="System theme" class="group size-8 flex items-center justify-center rounded-full"> <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="group-hover:stroke-black group-hover:dark:stroke-white transition-colors duration-300 ease-in-out"> <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect> <line x1="8" y1="21" x2="16" y2="21"></line> <line x1="12" y1="17" x2="12" y2="21"></line> </svg> </button> </div> </div>  </div> </footer> </body></html>
