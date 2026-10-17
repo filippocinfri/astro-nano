@@ -1,0 +1,313 @@
+---
+interface NcbItem {
+  name: string;
+  code?: string;
+  value: number;
+}
+
+interface Props {
+  title: string;
+  subtitle?: string;
+  period?: string;
+  unit?: string;
+  source?: string;
+  lastUpdated?: string;
+  items: NcbItem[];
+  height?: number;
+}
+
+const {
+  title,
+  subtitle,
+  period,
+  unit = "papers",
+  source,
+  lastUpdated,
+  items,
+  height,
+} = Astro.props;
+
+if (
+  items.some(
+    (item) =>
+      !item.name.trim() || !Number.isFinite(item.value) || item.value < 0,
+  )
+) {
+  throw new Error("Invalid NCB publication data");
+}
+
+const sortedItems = [...items].sort((a, b) => b.value - a.value);
+
+const chartHeight = height ?? Math.max(300, sortedItems.length * 34 + 90);
+
+const chartId = `ncb-papers-${crypto.randomUUID()}`;
+
+const chartData = JSON.stringify({
+  items: sortedItems,
+  unit,
+});
+---
+
+<figure class="my-8 w-full">
+  <figcaption class="mb-4 flex flex-wrap items-start justify-between gap-3">
+    <div class="min-w-0">
+      <h2 class="!mb-1 !mt-0 !font-sans !text-xl !font-semibold !leading-snug">
+        {title}
+      </h2>
+
+      {subtitle && <p class="!my-1 text-sm opacity-70">{subtitle}</p>}
+    </div>
+
+    {
+      period && (
+        <span class="shrink-0 rounded border border-black/10 px-2 py-1 text-xs dark:border-white/15">
+          {period}
+        </span>
+      )
+    }
+  </figcaption>
+
+  <div
+    class="ncb-bar-chart w-full"
+    style={`height: ${chartHeight}px`}
+    data-chart={chartData}
+    role="img"
+    aria-label={`${title}. Horizontal bar chart ranking ${sortedItems.length} institutions by number of published papers.`}
+  >
+  </div>
+
+  <p class="!my-2 font-sans text-xs opacity-60">
+    Hover over a bar to inspect its value.
+  </p>
+
+  {
+    source && (
+      <p class="!my-2 font-sans text-xs opacity-70">
+        <strong>Source:</strong> {source}
+      </p>
+    )
+  }
+
+  {
+    lastUpdated && (
+      <p class="!my-2 font-sans text-xs opacity-60">
+        Data last updated: {lastUpdated}
+      </p>
+    )
+  }
+
+  <details class="mt-4 text-sm">
+    <summary
+      class="cursor-pointer font-sans underline underline-offset-4 decoration-black/20 dark:decoration-white/25"
+    >
+      View underlying data
+    </summary>
+
+    <div class="mt-3 w-full overflow-x-auto">
+      <table class="w-full border-collapse text-sm">
+        <thead>
+          <tr>
+            <th scope="col">Rank</th>
+            <th scope="col">Institution</th>
+            <th scope="col">Code</th>
+            <th scope="col">Papers</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {
+            sortedItems.map((item, index) => (
+              <tr>
+                <td>{index + 1}</td>
+                <th scope="row">{item.name}</th>
+                <td>{item.code ?? "—"}</td>
+                <td class="text-right tabular-nums">
+                  {item.value.toLocaleString("en-GB")}
+                </td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+  </details>
+</figure>
+
+<script>
+  import * as echarts from "echarts/core";
+  import { BarChart } from "echarts/charts";
+  import { GridComponent, TooltipComponent } from "echarts/components";
+  import { CanvasRenderer } from "echarts/renderers";
+
+  echarts.use([BarChart, GridComponent, TooltipComponent, CanvasRenderer]);
+
+  type ChartData = {
+    unit: string;
+    items: {
+      name: string;
+      code?: string;
+      value: number;
+    }[];
+  };
+
+  function initializeCharts() {
+    document
+      .querySelectorAll<HTMLElement>(".ncb-bar-chart[data-chart]")
+      .forEach((element) => {
+        if (element.dataset.initialized === "true") return;
+
+        const rawData = element.dataset.chart;
+        if (!rawData) return;
+
+        const data = JSON.parse(rawData) as ChartData;
+
+        if (
+          !Array.isArray(data.items) ||
+          data.items.some(
+            (item) =>
+              typeof item.name !== "string" ||
+              !Number.isFinite(item.value) ||
+              item.value < 0,
+          )
+        ) {
+          console.error("Invalid NCB chart data", element);
+          return;
+        }
+
+        element.dataset.initialized = "true";
+
+        const chart = echarts.init(element, undefined, {
+          renderer: "canvas",
+        });
+
+        const isDark = document.documentElement.classList.contains("dark");
+
+        const article = element.closest("article") ?? document.body;
+        const computedStyle = getComputedStyle(article);
+
+        const colors = {
+          bar: isDark ? "#a8a29e" : "#57534e",
+          text: computedStyle.color,
+          muted: isDark ? "#a8a29e" : "#78716c",
+          grid: isDark ? "#44403c" : "#e7e5e4",
+          tooltip: isDark ? "#292524" : "#fafaf9",
+          tooltipText: isDark ? "#f5f5f4" : "#292524",
+          fontFamily: computedStyle.fontFamily,
+        };
+
+        chart.setOption({
+          animation: false,
+
+          grid: {
+            top: 12,
+            right: 48,
+            bottom: 12,
+            left: 8,
+            containLabel: true,
+          },
+
+          tooltip: {
+            trigger: "item",
+            confine: true,
+            backgroundColor: colors.tooltip,
+            borderWidth: 0,
+            padding: [10, 12],
+            textStyle: {
+              color: "#ffffff",
+              fontSize: 12,
+            },
+            formatter: (params: any) =>
+              `<strong>${params.name}</strong><br/>` +
+              `${Number(params.value).toLocaleString("en-GB")} ` +
+              `${data.unit}`,
+          },
+
+          xAxis: {
+            type: "value",
+            min: 0,
+            axisLine: { show: false },
+            axisTick: { show: false },
+            axisLabel: {
+              color: colors.muted,
+              fontSize: 11,
+              hideOverlap: true,
+            },
+            splitLine: {
+              lineStyle: {
+                color: colors.grid,
+                type: "dashed",
+              },
+            },
+          },
+
+          yAxis: {
+            type: "category",
+            inverse: true,
+            data: data.items.map((item) => item.name),
+            axisLine: { show: false },
+            axisTick: { show: false },
+            axisLabel: {
+              color: colors.text,
+              fontSize: 12,
+              width: 165,
+              overflow: "truncate",
+              margin: 12,
+            },
+          },
+
+          series: [
+            {
+              name: "Published papers",
+              type: "bar",
+              data: data.items.map((item) => item.value),
+              barMaxWidth: 22,
+              showBackground: true,
+              backgroundStyle: {
+                color: colors.grid,
+                borderRadius: [0, 4, 4, 0],
+              },
+              itemStyle: {
+                color: colors.bar,
+                borderRadius: [0, 4, 4, 0],
+              },
+              label: {
+                show: true,
+                position: "right",
+                color: colors.text,
+                fontSize: 11,
+                formatter: (params: any) =>
+                  Number(params.value).toLocaleString("en-GB"),
+              },
+              emphasis: {
+                focus: "self",
+                itemStyle: {
+                  color: "#d18b45",
+                },
+              },
+            },
+          ],
+        });
+
+        const resizeObserver = new ResizeObserver(() => {
+          chart.resize();
+        });
+
+        resizeObserver.observe(element);
+
+        const dispose = () => {
+          resizeObserver.disconnect();
+          chart.dispose();
+          element.dataset.initialized = "false";
+        };
+
+        document.addEventListener("astro:before-swap", dispose, {
+          once: true,
+        });
+      });
+  }
+
+  initializeCharts();
+
+  // Re-initialize charts after Astro client-side navigation.
+  document.addEventListener("astro:page-load", initializeCharts);
+</script>

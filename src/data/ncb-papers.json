@@ -1,0 +1,26 @@
+{
+    "title": "Research papers published by euro area NCBs",
+    "subtitle": "Publications indexed in the BIS Central Bank Research Hub",
+    "period": "All years indexed in the hub (no date filter)",
+    "unit": "publications",
+    "source": "Bank for International Settlements (BIS), Central Bank Research Hub, https://www.bis.org/publications/central-bank?keywords=&start_date=&end_date= (Organisation facet counts; publications are those included in RePEc)",
+    "lastUpdated": "2026-10-17",
+    "items": [
+    { "name": "Deutsche Bundesbank", "code": "DE", "value": 1001 },
+    { "name": "Banco de España", "code": "ES", "value": 908 },
+    { "name": "De Nederlandsche Bank", "code": "NL", "value": 705 },
+    { "name": "Banca d'Italia", "code": "IT", "value": 547 },
+    { "name": "Banque de France", "code": "FR", "value": 478 },
+    { "name": "Banco de Portugal", "code": "PT", "value": 312 },
+    { "name": "National Bank of Belgium", "code": "BE", "value": 312 },
+    { "name": "Bank of Finland", "code": "FI", "value": 310 },
+    { "name": "Central Bank of Ireland", "code": "IE", "value": 144 },
+    { "name": "Banque centrale du Luxembourg", "code": "LU", "value": 120 },
+    { "name": "Bank of Lithuania", "code": "LT", "value": 98 },
+    { "name": "Oesterreichische Nationalbank", "code": "AT", "value": 72 },
+    { "name": "Bank of Latvia", "code": "LV", "value": 62 },
+    { "name": "Eesti Pank", "code": "EE", "value": 55 },
+    { "name": "Bank of Greece", "code": "GR", "value": 48 },
+    { "name": "Národná banka Slovenska", "code": "SK", "value": 41 }
+  ]
+}

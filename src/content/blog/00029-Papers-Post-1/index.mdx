@@ -1,0 +1,30 @@
+---
+title: "Research output across euro area NCBs"
+description: "A comparison of central-bank research publications volume."
+date: "10/17/2026"
+---
+
+import NcbPapersBarChart from "../../../components/charts/NcbPapersBarChart.astro";
+import data from "../../../data/ncb-papers.json";
+
+# Research output across euro area NCBs
+
+Number of research publications to examine the research activity of national central banks.
+
+<NcbPapersBarChart
+  title={data.title}
+  subtitle={data.subtitle}
+  period={data.period}
+  unit={data.unit}
+  source={data.source}
+  lastUpdated={data.lastUpdated}
+  items={data.items}
+/>
+
+## Interpretation
+
+Discuss the differences between institutions, possible explanations, and the limitations of publication counts as a measure of research output.
+
+## Methodology
+
+Explain the publication categories included, the observation period, and the treatment of co-authored papers.
