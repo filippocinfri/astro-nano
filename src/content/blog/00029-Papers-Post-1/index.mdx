@@ -7,6 +7,9 @@ date: "10/17/2026"
 import NcbPapersBarChart from "../../../components/charts/NcbPapersBarChart.astro";
 import data from "../../../data/ncb-papers.json";
 
+import NcbPapersHeatmap from "../../../components/charts/NcbPapersHeatmap.astro";
+import dataByYear from "../../../data/ncb-papers-by-year.json";
+
 # Research output across euro area NCBs
 
 Number of research publications to examine the research activity of national central banks.
@@ -28,3 +31,21 @@ Discuss the differences between institutions, possible explanations, and the lim
 ## Methodology
 
 Explain the publication categories included, the observation period, and the treatment of co-authored papers.
+
+# Research papers per euro area NCB per year
+
+This heatmap compares annual publication counts for euro area national central banks, using records indexed in the BIS Central Bank Research Hub.
+
+<NcbPapersHeatmap data={dataByYear} />
+
+## Interpreting the results
+
+The heatmap shows the number of papers indexed for each institution and calendar year. Darker cells represent higher counts.
+
+A cell with no entries should not automatically be interpreted as zero research output. Changes in the coverage of the BIS Research Hub can affect comparisons between institutions and over time.
+
+## Methodology and limitations
+
+The figures represent publications indexed in the BIS Central Bank Research Hub, not necessarily the complete research output of each national central bank.
+
+Comparisons should account for differences in indexing coverage. The 2026 figures are year-to-date and should not be compared directly with full calendar years.

@@ -1,0 +1,455 @@
+---
+interface HeatmapItem {
+  name: string;
+  code?: string;
+  values: number[];
+}
+
+interface HeatmapData {
+  title: string;
+  subtitle?: string;
+  unit: string;
+  source: string;
+  sourceUrl?: string;
+  lastUpdated: string;
+  note: string;
+  years: number[];
+  partialYears?: number[];
+  items: HeatmapItem[];
+}
+
+interface Props {
+  data: HeatmapData;
+}
+
+const { data } = Astro.props;
+
+if (
+  !data.years.length ||
+  !data.items.length ||
+  data.items.some(
+    (item) =>
+      item.values.length !== data.years.length ||
+      item.values.some((value) => !Number.isFinite(value) || value < 0),
+  )
+) {
+  throw new Error("Invalid NCB annual publication data");
+}
+
+const initialHeight = Math.max(600, data.items.length * 34 + 130);
+const serializedData = JSON.stringify(data);
+---
+
+<figure class="my-8 w-full">
+  <figcaption class="mb-4">
+    <h2 class="!mb-1 !mt-0 !font-sans !text-xl !font-semibold !leading-snug">
+      {data.title}
+    </h2>
+
+    {
+      data.subtitle && (
+        <p class="!my-1 font-sans text-sm opacity-70">{data.subtitle}</p>
+      )
+    }
+  </figcaption>
+
+  <div class="ncb-heatmap-widget" data-heatmap={serializedData}>
+    <div
+      class="mb-4 flex flex-wrap items-center gap-x-5 gap-y-3 font-sans text-sm"
+    >
+      <label class="flex items-center gap-2">
+        <span>Sort rows by</span>
+        <select
+          data-sort
+          class="max-w-full rounded border border-stone-300 bg-transparent px-2 py-1.5 text-sm text-current focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 dark:border-stone-600"
+        >
+          <option value="total">Total papers</option>
+          <option value="last">Latest year with entries</option>
+          <option value="name">Name (A–Z)</option>
+        </select>
+      </label>
+
+      <label class="flex items-center gap-2">
+        <input
+          data-partial
+          type="checkbox"
+          class="size-4 accent-stone-600"
+          checked
+        />
+        <span>Include 2026 (year to date)</span>
+      </label>
+    </div>
+
+    <div
+      data-chart
+      class="ncb-heatmap-chart w-full"
+      style={`height: ${initialHeight}px`}
+      role="img"
+      aria-label="Heatmap of research papers indexed per euro area national central bank and year"
+    >
+    </div>
+
+    <p class="!my-3 flex items-start gap-2 font-sans text-sm opacity-70">
+      <span
+        class="mt-1 inline-block size-3 shrink-0 rounded-sm border border-stone-300 bg-stone-200 dark:border-stone-600 dark:bg-stone-700"
+        aria-hidden="true"></span>
+      <span>
+        No entries in the hub. This does not necessarily mean that no research
+        was produced.
+      </span>
+    </p>
+
+    <p
+      class="my-4 border-l-2 border-stone-400 pl-3 font-sans text-sm opacity-75 dark:border-stone-500"
+    >
+      {data.note}
+    </p>
+
+    <p class="!my-2 font-sans text-xs opacity-70">
+      <strong>Source:</strong>
+      {
+        data.sourceUrl ? (
+          <a
+            href={data.sourceUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="underline underline-offset-2"
+          >
+            {data.source}
+          </a>
+        ) : (
+          data.source
+        )
+      }
+      <span> · Updated {data.lastUpdated}</span>
+    </p>
+  </div>
+</figure>
+
+<script>
+  import * as echarts from "echarts/core";
+  import { HeatmapChart } from "echarts/charts";
+  import {
+    GridComponent,
+    TooltipComponent,
+    VisualMapComponent,
+  } from "echarts/components";
+  import { CanvasRenderer } from "echarts/renderers";
+
+  echarts.use([
+    HeatmapChart,
+    GridComponent,
+    TooltipComponent,
+    VisualMapComponent,
+    CanvasRenderer,
+  ]);
+
+  interface HeatmapItem {
+    name: string;
+    code?: string;
+    values: number[];
+  }
+
+  interface HeatmapData {
+    title: string;
+    subtitle?: string;
+    unit: string;
+    source: string;
+    sourceUrl?: string;
+    lastUpdated: string;
+    note: string;
+    years: number[];
+    partialYears?: number[];
+    items: HeatmapItem[];
+  }
+
+  interface ActiveChart {
+    chart: echarts.ECharts;
+    observer: ResizeObserver;
+    cleanup: () => void;
+  }
+
+  type Row = HeatmapItem & { vals: number[] };
+
+  const activeCharts = new Map<HTMLElement, ActiveChart>();
+
+  function getPalette() {
+    const root = document.documentElement;
+    const isDark =
+      root.classList.contains("dark") || root.dataset.theme === "dark";
+
+    return {
+      foreground: isDark ? "#e7e5e4" : "#292524",
+      muted: isDark ? "#a8a29e" : "#78716c",
+      background: isDark ? "#1c1917" : "#ffffff",
+      grid: isDark ? "#44403c" : "#e7e5e4",
+      none: isDark ? "#292524" : "#e7e5e4",
+      low: isDark ? "#44403c" : "#d6d3d1",
+      high: isDark ? "#a8a29e" : "#57534e",
+      lowText: isDark ? "#f5f5f4" : "#292524",
+      highText: isDark ? "#1c1917" : "#ffffff",
+      tooltip: isDark ? "#292524" : "#fafaf9",
+    };
+  }
+
+  const total = (row: Row) => row.vals.reduce((sum, value) => sum + value, 0);
+
+  const lastYearWithEntries = (row: Row) => {
+    for (let i = row.vals.length - 1; i >= 0; i--) {
+      if (row.vals[i] > 0) return i;
+    }
+    return -1;
+  };
+
+  const sorters = {
+    total: (a: Row, b: Row) =>
+      total(b) - total(a) || a.name.localeCompare(b.name),
+
+    last: (a: Row, b: Row) =>
+      lastYearWithEntries(b) - lastYearWithEntries(a) ||
+      total(b) - total(a) ||
+      a.name.localeCompare(b.name),
+
+    name: (a: Row, b: Row) => a.name.localeCompare(b.name),
+  };
+
+  type SortKey = keyof typeof sorters;
+
+  function isSortKey(value: string): value is SortKey {
+    return value in sorters;
+  }
+
+  // All DOM references are passed in as non-null parameters, so no narrowing
+  // has to survive into closures (works on any TypeScript version).
+  function mountHeatmap(
+    widget: HTMLElement,
+    chartElement: HTMLElement,
+    sortSelect: HTMLSelectElement,
+    partialCheckbox: HTMLInputElement,
+    data: HeatmapData,
+  ) {
+    const chart = echarts.init(chartElement, undefined, {
+      renderer: "canvas",
+    });
+
+    const render = () => {
+      const palette = getPalette();
+
+      const includePartial = partialCheckbox.checked;
+      const partialYears = data.partialYears ?? [];
+
+      const yearIndexes = data.years
+        .map((year, index) => ({ year, index }))
+        .filter(({ year }) => includePartial || !partialYears.includes(year));
+
+      const rows: Row[] = data.items.map((item) => ({
+        ...item,
+        vals: yearIndexes.map(({ index }) => item.values[index]),
+      }));
+
+      const sortKey: SortKey = isSortKey(sortSelect.value)
+        ? sortSelect.value
+        : "total";
+      rows.sort(sorters[sortKey]);
+
+      const years = yearIndexes.map(({ year }) => year);
+
+      const maximum = Math.max(2, ...rows.flatMap((row) => row.vals));
+
+      const heatmapPoints = rows.flatMap((row, y) =>
+        row.vals.map((value, x) => {
+          const intensity = value > 0 ? (value - 1) / (maximum - 1) : 0;
+
+          return {
+            value: [x, y, value],
+            label: {
+              color:
+                value === 0
+                  ? palette.muted
+                  : intensity > 0.5
+                    ? palette.highText
+                    : palette.lowText,
+            },
+          };
+        }),
+      );
+
+      chartElement.style.height = `${Math.max(400, rows.length * 34 + 130)}px`;
+
+      chart.setOption(
+        {
+          animation: false,
+
+          textStyle: {
+            color: palette.foreground,
+            fontFamily: getComputedStyle(widget).fontFamily,
+          },
+
+          grid: {
+            top: 30,
+            left: 8,
+            right: 12,
+            bottom: 64,
+            containLabel: true,
+          },
+
+          tooltip: {
+            trigger: "item",
+            confine: true,
+            backgroundColor: palette.tooltip,
+            borderColor: palette.grid,
+            borderWidth: 1,
+            textStyle: {
+              color: palette.foreground,
+            },
+            formatter: (params: any) => {
+              const value = params.value as [number, number, number];
+              const row = rows[value[1]];
+              const year = years[value[0]];
+              const count = value[2];
+
+              return (
+                `<strong>${row.name}</strong> · ${year}<br/>` +
+                (count > 0
+                  ? `${count.toLocaleString("en-GB")} ${data.unit}`
+                  : "No entries in the hub")
+              );
+            },
+          },
+
+          xAxis: {
+            type: "category",
+            data: years.map(String),
+            position: "top",
+            axisLine: { show: false },
+            axisTick: { show: false },
+            axisLabel: {
+              color: palette.muted,
+              hideOverlap: true,
+            },
+          },
+
+          yAxis: {
+            type: "category",
+            data: rows.map((row) => row.name),
+            inverse: true,
+            axisLine: { show: false },
+            axisTick: { show: false },
+            axisLabel: {
+              color: palette.foreground,
+              width: 175,
+              overflow: "truncate",
+            },
+          },
+
+          visualMap: {
+            type: "continuous",
+            min: 1,
+            max: maximum,
+            dimension: 2,
+            calculable: false,
+            orient: "horizontal",
+            left: "center",
+            bottom: 4,
+            text: [String(maximum), "1"],
+            textStyle: {
+              color: palette.muted,
+            },
+            inRange: {
+              color: [palette.low, palette.high],
+            },
+            outOfRange: {
+              color: [palette.none],
+            },
+          },
+
+          series: [
+            {
+              type: "heatmap",
+              data: heatmapPoints,
+              label: {
+                show: true,
+                fontSize: 11,
+                formatter: (params: any) =>
+                  params.value[2] > 0
+                    ? Number(params.value[2]).toLocaleString("en-GB")
+                    : "–",
+              },
+              itemStyle: {
+                borderColor: palette.background,
+                borderWidth: 3,
+                borderRadius: 3,
+              },
+              emphasis: {
+                itemStyle: {
+                  borderColor: palette.foreground,
+                  borderWidth: 2,
+                },
+              },
+            },
+          ],
+        },
+        true,
+      );
+    };
+
+    const observer = new ResizeObserver(() => chart.resize());
+    observer.observe(chartElement);
+
+    sortSelect.addEventListener("change", render);
+    partialCheckbox.addEventListener("change", render);
+
+    const cleanup = () => {
+      observer.disconnect();
+      sortSelect.removeEventListener("change", render);
+      partialCheckbox.removeEventListener("change", render);
+      chart.dispose();
+      activeCharts.delete(widget);
+    };
+
+    activeCharts.set(widget, { chart, observer, cleanup });
+
+    render();
+  }
+
+  function initializeHeatmaps() {
+    document
+      .querySelectorAll<HTMLElement>(".ncb-heatmap-widget[data-heatmap]")
+      .forEach((widget) => {
+        if (activeCharts.has(widget)) return;
+
+        const chartElement = widget.querySelector<HTMLElement>("[data-chart]");
+        const sortSelect =
+          widget.querySelector<HTMLSelectElement>("[data-sort]");
+        const partialCheckbox =
+          widget.querySelector<HTMLInputElement>("[data-partial]");
+        const rawData = widget.dataset.heatmap;
+
+        if (!chartElement || !sortSelect || !partialCheckbox || !rawData) {
+          return;
+        }
+
+        let data: HeatmapData;
+
+        try {
+          data = JSON.parse(rawData) as HeatmapData;
+        } catch (error) {
+          console.error("Unable to parse NCB heatmap data", error);
+          return;
+        }
+
+        mountHeatmap(widget, chartElement, sortSelect, partialCheckbox, data);
+      });
+  }
+
+  function disposeHeatmaps() {
+    for (const instance of [...activeCharts.values()]) {
+      instance.cleanup();
+    }
+  }
+
+  initializeHeatmaps();
+
+  document.addEventListener("astro:page-load", initializeHeatmaps);
+  document.addEventListener("astro:before-swap", disposeHeatmaps);
+</script>

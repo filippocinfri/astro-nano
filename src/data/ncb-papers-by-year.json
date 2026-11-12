@@ -1,0 +1,93 @@
+{
+  "title": "Research papers per euro area NCB per year",
+  "subtitle": "Publications indexed in the BIS Central Bank Research Hub, 2015–2025",
+  "unit": "papers",
+  "source": "Bank for International Settlements (BIS), Central Bank Research Hub",
+  "sourceUrl": "https://www.bis.org/publications/central-bank",
+  "lastUpdated": "2026-10-25",
+  "note": "A grey cell means the hub has no entries for that bank and year. This does not necessarily mean that the bank produced no research. Compare colours only across years where a bank is continuously indexed.",
+  "years": [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026],
+  "partialYears": [2026],
+  "items": [
+    {
+      "name": "Deutsche Bundesbank",
+      "code": "DE",
+      "values": [45, 57, 39, 57, 50, 33, 31, 57, 37, 52, 36, 16]
+    },
+    {
+      "name": "Banca d’Italia",
+      "code": "IT",
+      "values": [45, 34, 66, 44, 16, 61, 42, 40, 39, 38, 37, 30]
+    },
+    {
+      "name": "Banco de España",
+      "code": "ES",
+      "values": [35, 36, 50, 51, 48, 40, 42, 30, 40, 40, 51, 22]
+    },
+    {
+      "name": "Bank of Finland",
+      "code": "FI",
+      "values": [1, 53, 59, 49, 50, 46, 32, 19, 0, 0, 0, 0]
+    },
+    {
+      "name": "De Nederlandsche Bank",
+      "code": "NL",
+      "values": [44, 52, 44, 47, 39, 42, 4, 0, 0, 0, 0, 0]
+    },
+    {
+      "name": "Banque de France",
+      "code": "FR",
+      "values": [46, 29, 43, 45, 25, 0, 0, 0, 0, 0, 0, 0]
+    },
+    {
+      "name": "Central Bank of Ireland",
+      "code": "IE",
+      "values": [0, 1, 12, 16, 16, 13, 9, 10, 10, 7, 18, 8]
+    },
+    {
+      "name": "Banque centrale du Luxembourg",
+      "code": "LU",
+      "values": [5, 3, 10, 10, 13, 10, 0, 12, 11, 12, 9, 7]
+    },
+    {
+      "name": "National Bank of Belgium",
+      "code": "BE",
+      "values": [13, 28, 17, 26, 7, 0, 0, 0, 0, 7, 1, 0]
+    },
+    {
+      "name": "Bank of Lithuania",
+      "code": "LT",
+      "values": [6, 14, 11, 8, 13, 13, 13, 4, 0, 0, 0, 0]
+    },
+    {
+      "name": "Oesterreichische Nationalbank",
+      "code": "AT",
+      "values": [0, 4, 8, 7, 2, 5, 4, 7, 9, 8, 10, 8]
+    },
+    {
+      "name": "Bank of Latvia",
+      "code": "LV",
+      "values": [0, 0, 0, 2, 7, 6, 5, 8, 10, 8, 12, 3]
+    },
+    {
+      "name": "Banco de Portugal",
+      "code": "PT",
+      "values": [24, 33, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    },
+    {
+      "name": "Bank of Greece",
+      "code": "GR",
+      "values": [0, 1, 21, 15, 11, 0, 0, 0, 0, 0, 0, 0]
+    },
+    {
+      "name": "Eesti Pank",
+      "code": "EE",
+      "values": [9, 10, 12, 6, 0, 0, 0, 0, 0, 0, 0, 0]
+    },
+    {
+      "name": "Národná banka Slovenska",
+      "code": "SK",
+      "values": [1, 5, 12, 5, 7, 0, 0, 0, 0, 0, 0, 0]
+    }
+  ]
+}
